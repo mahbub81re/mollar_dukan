@@ -28,7 +28,7 @@ export default function Product({params}:{params:{id:string}}) {
  },[])
 
  async function getProduct(){
-     const res = await fetch("/api/common/products/product?id="+params.id ,{method:"GET"});
+     const res = await fetch("/api/common/products/product?id="+params.id ,{method:"GET",cache:"no-store"});
      const data = await res.json();
      console.log(data)
      setProduct(data.data)

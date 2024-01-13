@@ -88,14 +88,14 @@ subcategories:[
     async function getSubCategories(id:string) {
       getCatProducts(id);
       setSelectedCat(id);
-      const res = await fetch("/api/common/categories/sub_categories?id="+id);
+      const res = await fetch("/api/common/categories/sub_categories?id="+id,{cache:"no-store"});
       const data = await res.json();
       setSubCategories(data.data);
       setSubOpen(true)
     }
 
     async function getCatProducts(id:string){
-      const res = await fetch("/api/common/products/by_cat?id="+id);
+      const res = await fetch("/api/common/products/by_cat?id="+id,{cache:"no-store"});
       const data = await res.json();
       setSelectedCat(id);
       setProducts(data.data);

@@ -70,7 +70,7 @@ import { useEffect, useState } from "react"
      },[])
 
      async function getAllOrders(){
-      const res = await fetch("/api/admin/orders/get_all_order");
+      const res = await fetch("/api/admin/orders/get_all_order",{cache:"no-store"});
       const data = await res.json();
       console.log(data)
       setOrders(data.data)

@@ -78,13 +78,13 @@ interface shippingAddress{
    
    }
   async function getAddress(id:string){
-    const res = await fetch("/api/user-private/address/get_address?id="+id,{method:"GET"})
+    const res = await fetch("/api/user-private/address/get_address?id="+id,{method:"GET",cache:"no-store"})
     const data = await res.json()
     setAddresses(data.data)
      setAddress(true)
   }
     async function getUsers(){
-      const res =  await fetch("/api/admin/users",{method:"GET"});
+      const res =  await fetch("/api/admin/users",{method:"GET",cache:"no-store"});
       const data = await res.json();
       setUsers(data.data)
     }
