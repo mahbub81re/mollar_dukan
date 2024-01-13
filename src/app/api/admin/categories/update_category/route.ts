@@ -19,7 +19,7 @@ export async function POST(req:NextRequest){
         secret:process.env.NEXTAUTH_SECRET
     })
     try{
-        if(token?.role==="admin"){
+        if(token?.email==="admin@gmail.com"){
             connectDB();
             const {categoryName,categoryDescription, categoryImage,categorySlug}=data
             const res =  await Category.findByIdAndUpdate(id,{categoryName,categoryDescription,categoryImage,categorySlug});

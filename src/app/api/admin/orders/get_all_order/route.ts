@@ -12,7 +12,7 @@ export async function GET(req:NextRequest){
         secret:process.env.NEXTAUTH_SECRET
     });
 
-    if(token?.role==="admin"){
+    if(token?.email==="admin@gmail.com"){
             try{
             const res =await Order.find({}).populate("orderItems.product").populate("user").populate("shippingAddress");
             if(res){

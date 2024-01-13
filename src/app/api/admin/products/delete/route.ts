@@ -16,7 +16,7 @@ export async function POST(req:NextRequest){
         secret:process.env.NEXTAUTH_SECRET
     })
     try{
-        if(token?.role==="admin"){
+        if(token?.email==="admin@gmail.com"){
             connectDB();
             const res =  await Product.findByIdAndDelete({_id:id});
             if(res){
