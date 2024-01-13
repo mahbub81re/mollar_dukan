@@ -14,7 +14,7 @@ export async function GET(req:NextRequest) {
    try{
     connectDB();
     const products =await Category.findById(id).populate("subcategories.categories");
-    if(products.subcategories){
+    if(products){
         return NextResponse.json({status:200, success  :true , data :products.subcategories});
     }else{
         return NextResponse.json({status: 204 , success: false, message: 'No product found.' });

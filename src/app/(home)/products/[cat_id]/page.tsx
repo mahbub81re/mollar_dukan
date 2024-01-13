@@ -27,15 +27,15 @@ export default function CataProducts({ params }: { params: { cat_id: string } })
 
 
   async function get_products_by_cat(){
-    const res = await fetch("/api/common/products/by_cat?id="+params.cat_id,{cache:"reload"});
+    const res = await fetch("/api/common/products/by_cat?id="+params.cat_id);
     const data = await res.json();
     setProduct(data.data)
   }
 
   async function get_sub_categories(){
-    const res = await fetch("/api/common/categories/sub_categories?id="+params.cat_id,{cache:"reload"});
+    const res = await fetch("/api/common/categories/sub_categories?id="+params.cat_id);
     const data = await res.json();
-    setCategory(data.data.subcategories)
+    setCategory(data.data)
   }
   return (
     <div className=' w-full h-auto pt-24  bg-gradient-to-r from-[#30608D] via-black to-[#0A1915] pb-16 ' >
