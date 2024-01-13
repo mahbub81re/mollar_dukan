@@ -15,7 +15,7 @@ export async function GET(req:NextRequest) {
     connectDB();
     const products =await Product.find({
         productCategory:id
-    }).select("productName productDescription productDescription productImage productPrice productQuantity ");
+    }).select("productName mesurType productDescription productDescription productImage productPrice productQuantity ");
     if(products){
         return NextResponse.json({status:200, success  :true , data :products});
     }else{

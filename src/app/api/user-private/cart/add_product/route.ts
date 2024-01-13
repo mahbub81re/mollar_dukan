@@ -18,12 +18,12 @@ export async function POST(req:NextRequest){
             connectDB();
             const data = await req.json();
             const final =  {
-                userID:data.userID,
+                userID:token?.id,
                 productID:data.productID,
                 quantity:1
             }
             let res = null
-            const isCart =  await Cart.findOne({userID:data.userID,productID:data.productID});
+            const isCart =  await Cart.findOne({userID:token?.id,productID:data.productID});
             
             if(isCart){
                 const cartId = isCart._id;

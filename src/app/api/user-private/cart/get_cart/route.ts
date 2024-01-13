@@ -13,6 +13,7 @@ export  async function GET(req:NextRequest){
     if(token){
       try{ 
         connectDB()
+        console.log(token)
         const res = await Cart.find({userID:token?.id}).populate("productID");
          if(res){
            return NextResponse.json({success:true,data:res})
