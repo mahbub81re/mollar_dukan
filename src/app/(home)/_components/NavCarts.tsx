@@ -35,11 +35,12 @@ export default function NavCarts() {
                 method: 'GET',
                 cache: 'reload',
             });
-            if (!res.ok) {
+            if (!res.ok ) {
                 throw new Error(`Failed to fetch cart data: ${res.status}`);
+            }else{
+              const data = await res.json();
+              if(data.success===false) {console.log(data.message)}else{ setCarts(data.data);}
             }
-            const data = await res.json();
-            setCarts(data.data);
         } catch (error) {
             console.error(error);
         }

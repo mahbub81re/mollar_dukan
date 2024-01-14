@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     required: [true, "please provide a valid email"],
     unique: true,
   },
+  google_id:{
+    type:String,
+    unique:true
+  },
   role:{
     type:String,
     default:"user"

@@ -1,7 +1,6 @@
 //http://localhost:3000/api/user-private/cart/get_cart
 import connectDB from "@/lib/db";
 import Cart from "@/models/Cart";
-import User from "@/models/User";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,19 +9,22 @@ export  async function GET(req:NextRequest){
         req,
         secret:process.env.NEXTAUTH_SECRET
     })
+    console.log(token)
     if(token){
       try{ 
         connectDB()
-        console.log(token)
+
         const res = await Cart.find({userID:token?.id}).populate("productID");
          if(res){
            return NextResponse.json({success:true,data:res})
          }else{
-            return NextResponse.json({success:false,message:"Somethis is heppend 1"})
+            return NextResponse.json({success:false,message:[]})
          }
         }catch(err){
-            return NextResponse.json({success:false,message:"Somethis is heppend"})
+            return NextResponse.json({success:false,message:err})
 
         }
+    }else{
+      return NextResponse.json({success:false,message:"You are not authorized"})
     }
 }

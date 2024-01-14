@@ -49,13 +49,14 @@ export const authOptions:NextAuthOptions = {
     ],
 
     callbacks: {
-      async signIn({ user, account }: { user: any; account: any }) {
+      async signIn({ user, account }: { user: any; account: any;}) {
         if (account.provider === "google") {
           try {
             const { name, email  } = user;
             await connectDB();
             const ifUserExists = await User.findOne({ email });
             if (ifUserExists) {
+              user.id=ifUserExists._id
               return user;
             }
             const newUser = new User({
@@ -64,14 +65,16 @@ export const authOptions:NextAuthOptions = {
               role:"user",
             });
             const res = await newUser.save();
+            console.log(res)
             if (res.status === 200 || res.status === 201) {
-              return {id:user._id,email:user.email,name:user.name,role:user.role};
+              return {id:res._id,email:res.email,name:res.name,role:res.role};
             }
   
           } catch (err) {
             console.log(err);
           }
         }
+
         return {id:user._id,email:user.email,name:user.name,role:user.role};
       },
       async jwt({ token, user }) {
