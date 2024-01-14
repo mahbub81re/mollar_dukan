@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 
 import './globals.css'
 import AuthProvider from '@/components/AuthProvider'
+import Head from 'next/head'
 
 
 
@@ -19,5 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-return(<html lang="en"><body className={myFont.className}><AuthProvider> {children}</AuthProvider></body></html>)
+return(<html lang="en"><body className={myFont.className}>
+   <Head>
+        {/* Other meta tags or head elements */}
+        <meta name="google-site-verification" content="gsNc4Ka7Bv99vMH3l-zk6X5GkvImBA-n0eUbI5g0OJI" />
+        {/* Other meta tags or head elements */}
+      </Head>
+  <AuthProvider> {children}</AuthProvider></body></html>)
 }
