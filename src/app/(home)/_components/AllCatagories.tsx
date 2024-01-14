@@ -22,12 +22,12 @@ export default  function AllCatagories() {
      <SecTitle dot_color="bg-[#ff3131]" title="Catagories" text_color="text-[#ff3131]"/>
       {/* cata list */}
       <div className="flex flex-row justify-center ">
-        <div className={`grid grid-cols-1 md:grid-cols-2 text-[24px]  space-y-14  md:space-x-6 max-md:space-y-16 ` }>
+        <div className={`grid grid-cols-1 md:grid-cols-2 text-[24px]  space-y-14  md:space-x-6 max-md:space-y-12 ` }>
           {catagories.map((category:any)=>{
             count+=1;
                  return(
-                 <Link href={"/products/"+category._id} key={category._id} className={`${count===1&& "mt-14 ml-14"}`}>
-                 <div className={`inline w-auto p-6 pr-8  rounded-full  bg-gradient-to-tr from-[#004AAD] to-[#CB6CE6]  md:my-4`}>
+                 <Link href={"/products/"+category._id} key={category._id} className={`${count===1&& "   inline-block"}`}>
+                 <div className={`inline-block  p-6 pr-8  rounded-full w-[300px]  bg-gradient-to-tr from-[#004AAD]  to-[#CB6CE6] `}>
                    <div className='inline w-[40px] mr-2 rounded-full overflow-hidden'> 
                     <Image className="rounded-full inline w-[40px] h-[40px]"  src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+category.categoryImage} width={40} height={40} alt="C"/>
                    </div>
