@@ -6,9 +6,9 @@ import React, {  useState } from "react";
 import axios from "axios";
 import {  useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
-const Signup =  () => {
+export default function SignUpPage() {
    const {data:session} = useSession()
     
    
@@ -76,7 +76,6 @@ const Signup =  () => {
         backgroundSize: "cover",
       }}
     >
-      <ToastContainer/>
       <div className="grid place-items-center mx-auto max-w-4xl w-full lg:py-10 min-h-screen ">
         <div className="flex justify-center items-center  lg:flex-row flex-col gap-6 lg:gap-0 w-full shadow-md rounded-2xl">
           <div className="lg:w-1/2 w-full bg-[#5D7DF3]  max-lg:bg-[#5D7DF3] max-lg:hidden">
@@ -171,4 +170,3 @@ const Signup =  () => {
   );
 };
 
-export default Signup;

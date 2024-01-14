@@ -30,7 +30,7 @@ interface AddressType {
 };
 _id:string
 }
-export default function MyCart() {
+export default function MyCartPage() {
   const [adding, setAdding] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [updating, setUpdating] = useState(false)

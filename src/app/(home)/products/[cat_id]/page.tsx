@@ -17,7 +17,7 @@ mesurType:string,
 }
 
 
-export default function CataProducts({ params }: { params: { cat_id: string } }) {
+export default function CataProductsPage({ params }: { params: { cat_id: string } }) {
  
   const [products , setProduct] = useState([]);
   const [categories , setCategory] = useState([]);

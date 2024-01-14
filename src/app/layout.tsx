@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-
+import { ToastContainer } from './nexttoast';
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'
 import AuthProvider from '@/components/AuthProvider'
 import Head from 'next/head'
@@ -33,5 +34,8 @@ return(<html lang="en"><body className={myFont.className}>
 
         {/* Other meta tags or head elements */}
       </Head>
-  <AuthProvider> {children}</AuthProvider></body></html>)
+  <AuthProvider>
+     {children}
+  {/* <ToastContainer/> */}
+  </AuthProvider></body></html>)
 }
