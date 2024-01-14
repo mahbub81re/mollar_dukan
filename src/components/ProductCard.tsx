@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
 type ProductData = {
   productName: string,
   productImage: string,
@@ -26,11 +27,16 @@ export default function ProductCard({ productName,productDescription, productIma
       method:"POST"
     })
     const data =await res.json();
-    setAdding(false);
+    if(!data.success){
+      toast.error(data.message)
+    }else{
+       toast.success("Product Added Successfully")
+       setAdding(false);
+    }
  }
 
   return (
-   <Card  className="w-[220px] border-none p-0 bg-white bg-gradient-to-tr from-[#004AAD] to-[#CB6CE6]">
+   <Card  className="w-[280px] border-none p-0 bg-white bg-gradient-to-tr from-[#004AAD] to-[#CB6CE6]">
       <CardContent>
       <Image src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+productImage } width={250} height={250} className='w-full rounded-md ' alt="product"/>
       </CardContent>

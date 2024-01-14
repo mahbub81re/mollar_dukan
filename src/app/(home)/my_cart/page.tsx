@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
 interface CartItem {
   _id: string;
   quantity: number;
@@ -46,9 +47,15 @@ export default function MyCart() {
   async function getAddress(){
       const res = await fetch("/api/user-private/address/get_address");
        const data = await res.json()
-       setAddress(data.data);
-       if(data.data.length>0) setSelect(data.data[0]._id);
-
+       if(data.success===false){
+        toast.error("Network problem")
+       }else{
+        setAddress(data.data);
+        if(data.data.length>0) {setSelect(data.data[0]._id);}
+        else{
+          toast.warning("Add An Address First!")
+        }
+       }
   } 
 
     
@@ -61,15 +68,18 @@ export default function MyCart() {
                     cache: 'reload',
                 });
                 if (!res.ok) {
-                    throw new Error(`Failed to fetch cart data: ${res.status}`);
+                  toast.error("Network problem")
                 }
+
                 const data = await res.json();
-                console.log(data)
-                setCarts(data.data);
+                if(data.success===false){
+                  toast.error(data.message)
+                }else{
+                  setCarts(data.data);
                 setUpdating(false);
-                
+                }  
             } catch (error) {
-                console.error(error);
+              toast.error("Something is wrong")
             }
            }
        
@@ -84,7 +94,12 @@ export default function MyCart() {
           method:"POST"
         })
         const data =await res.json();
-        getCart()
+        if(data.success===false){
+          toast.error(data.message)
+        }else{
+          toast.success("Added Succesfully");
+          getCart()
+        }
         setAdding(false);
      }
     
@@ -93,7 +108,12 @@ export default function MyCart() {
         setDeleting(true)
         const res=await fetch("/api/user-private/cart/delete_from_cart?id="+id,{method:"POST",cache:"reload"});
         const data =await res.json();
-        getCart()
+        if(data.success===false){
+          toast.error(data.message)
+        }else{
+          toast.success("Deleted Succesfully");
+          getCart()
+        }
         setDeleting(false)
       }
 
@@ -109,7 +129,12 @@ export default function MyCart() {
                   }
                   const res=await fetch("/api/user-private/order/create_order",{method:"POST",body:JSON.stringify(final)});
                   const data =await res.json();
-                  console.log(data)
+                  if(data.success===false){
+                    toast.error(data.message)
+                  }else{
+                    toast.success("Ordered Succesfully");
+                    getCart()
+                  }
       }
 
   return (

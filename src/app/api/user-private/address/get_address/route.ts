@@ -25,6 +25,6 @@ export async function GET(req:NextRequest){
             return NextResponse.json({success:false,status:403,message:"Not Authorized"})
         }
     }catch(err){
-        return NextResponse.json({success:false,status:402,message:err})
+        return NextResponse.json({success:false,status:402,message:"Something is wrong!"})
     }
 }

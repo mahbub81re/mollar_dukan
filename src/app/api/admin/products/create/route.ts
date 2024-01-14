@@ -14,7 +14,7 @@ export async function POST(req:NextRequest){
         secret:process.env.NEXTAUTH_SECRET
     })
     try{
-        if(token?.email==="admin@gmail.com"){
+        if(token?.email===process.env.ADMIN){
             connectDB();
             // Unfinished work
 
@@ -22,12 +22,12 @@ export async function POST(req:NextRequest){
             if(res){
                 return NextResponse.json({success:true,status:200,data:res})
             }else{
-                return NextResponse.json({success:false,status:402,data:"Did not Found Order"})
+                return NextResponse.json({success:false,status:402,message:"Did not Found Order"})
             }
         }else{
-            return NextResponse.json({success:false,status:403,data:"Not Authorized"})
+            return NextResponse.json({success:false,status:403,message:"Not Authorized"})
         }
     }catch(err){
-        return NextResponse.json({success:false,status:402,data:err})
+        return NextResponse.json({success:false,status:402,message:"Something is wrong!"})
     }
 }

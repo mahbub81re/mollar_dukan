@@ -12,9 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import Catagories from "@/components/Catagories"
-import NavCart from "@/components/NavCart"
 import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
 import NavCarts from "./NavCarts"
 import { GanttChartSquare, Home, ShoppingCart } from "lucide-react"
 

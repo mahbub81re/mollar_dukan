@@ -5,6 +5,7 @@ import SecTitle from './SecTitle'
 import { BellElectric, Book, Shirt, Syringe } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 
 export default  function AllCatagories() {
   const [catagories, setCat]= useState([])
@@ -15,7 +16,11 @@ export default  function AllCatagories() {
   async function getCatagoy(){
       const res =await fetch("/api/common/categories",{cache:"reload"});
       const data = await res.json();
-      setCat(data.data)
+      if(data.success===false){
+       toast.error("Network Problem! please reload the page or check your connection");
+      }else{
+        setCat(data.data)
+      }
   }
   return (
     <div className=' w-full h-auto pb-24 bg-local ' style={{backgroundImage: `url("/catbg.png")`}}>
@@ -26,7 +31,7 @@ export default  function AllCatagories() {
           {catagories.map((category:any)=>{
             count+=1;
                  return(
-                 <Link href={"/products/"+category._id} key={category._id} className={`${count===1&& "   inline-block"}`}>
+                 <Link href={"/products/"+category._id} key={category._id} className={`${count===1&& " md:mt-14 md:ml-2   inline-block"}`}>
                  <div className={`inline-block  p-6 pr-8  rounded-full w-[300px]  bg-gradient-to-tr from-[#004AAD]  to-[#CB6CE6] `}>
                    <div className='inline w-[40px] mr-2 rounded-full overflow-hidden'> 
                     <Image className="rounded-full inline w-[40px] h-[40px]"  src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+category.categoryImage} width={40} height={40} alt="C"/>

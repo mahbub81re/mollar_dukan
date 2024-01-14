@@ -18,10 +18,10 @@ export  async function GET(req:NextRequest){
          if(res){
            return NextResponse.json({success:true,data:res})
          }else{
-            return NextResponse.json({success:false,message:[]})
+            return NextResponse.json({success:false,message:"Not Found"})
          }
         }catch(err){
-            return NextResponse.json({success:false,message:err})
+            return NextResponse.json({success:false,message:"Something is wrong!"})
 
         }
     }else{

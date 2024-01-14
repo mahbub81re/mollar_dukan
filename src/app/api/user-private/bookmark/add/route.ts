@@ -19,12 +19,12 @@ export async function POST(req:NextRequest){
             if(res){
                 return NextResponse.json({success:true,status:200,data:res})
             }else{
-                return NextResponse.json({success:false,status:402,data:"Did not created category"})
+                return NextResponse.json({success:false,status:402,message:"Not Added"})
             }
         }else{
-            return NextResponse.json({success:false,status:403,data:"Not Authorized"})
+            return NextResponse.json({success:false,status:403,message:"Not Authorized"})
         }
     }catch(err){
-        return NextResponse.json({success:false,status:402,data:err})
+        return NextResponse.json({success:false,status:402,message:"Something is wrong!"})
     }
 }

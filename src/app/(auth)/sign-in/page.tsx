@@ -1,5 +1,6 @@
 "use client";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Mail, Lock } from "lucide-react";
 import Image from "next/image";
 // import bg from "../public/bg3.png";
@@ -47,14 +48,16 @@ const Login = () => {
       });
 
       if (res?.error) {
-        console.log(res);
+        toast.error("Sorry! Username or Password not matched");
         setError("error");
+      }else{
+        toast.success("Successfully Loged-in");
+        router.push("/");
       }
 
 
 
       setError("");
-       router.push("/");
     } catch (error) {
       console.log(error);
       setError("");
@@ -76,6 +79,7 @@ const Login = () => {
         backgroundSize: "cover",
       }}
     >
+      <ToastContainer className="text-red-500"/>
       <div className="grid place-items-center mx-auto max-w-4xl w-full lg:py-10 min-h-screen">
         <div className="flex justify-center items-center lg:flex-row flex-col gap-6 lg:gap-0 w-full shadow-md rounded-2xl">
           <div className="lg:w-1/2 w-full bg-[#5D7DF3] max-lg:hidden">

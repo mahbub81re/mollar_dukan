@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface Address {
     shippingAddress: {
@@ -39,7 +40,11 @@ export default function Profile() {
         if(session?.user){
             const res =await fetch("/api/user-private/address/get_address")
             const data =await res.json();
-            setAddresses(data.data)
+            if(data.success===false){
+                toast.error(data.message)
+            }else{
+                setAddresses(data.data)
+            }  
         }  
     }
 
@@ -98,7 +103,6 @@ type Inputs = {
 
 function AddressOne({fullName,address,city,postalCode,country,phone,id}:shippingAddress){
     const [editable, setEditable] = useState(true)
-    const [edited, setEdited] = useState(false)
      const router = useRouter()
     const { register, handleSubmit } = useForm<Inputs>({
         criteriaMode: "all"
@@ -112,7 +116,11 @@ function AddressOne({fullName,address,city,postalCode,country,phone,id}:shipping
             body:JSON.stringify(data),
         })
         const dat =await res.json()
-        console.log(dat)
+        if(dat.success===false){
+           toast.error(dat.message)
+        }else{
+          router.push("/profile")
+        }
     }
    return (<>
     <form  onSubmit={handleSubmit(onSubmit)} className="w-full my-6 bg-orange-300 p-5 max-w-lg flex flex-col  py-2  ">
@@ -134,7 +142,6 @@ function AddressOne({fullName,address,city,postalCode,country,phone,id}:shipping
 
 function AddAnother(){
     const [editable, setEditable] = useState(false)
-    const [edited, setEdited] = useState(false)
     const router = useRouter()
     const { register, handleSubmit } = useForm<Inputs>({
         criteriaMode: "all"
@@ -148,9 +155,11 @@ function AddAnother(){
             body:JSON.stringify(data),
         })
         const dat =await res.json()
-        if(dat.success){
-            router.push("/profile")
-        }
+        if(dat.success===false){
+            toast.error(dat.message)
+         }else{
+           router.push("/profile")
+         }
     }
     return(
        

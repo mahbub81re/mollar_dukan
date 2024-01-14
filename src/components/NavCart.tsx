@@ -5,6 +5,7 @@ import { Button } from './ui/button'
 import { Minus, Plus, X } from 'lucide-react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
 
 export default function NavCart({info}:{info:{
   c_id:string,
@@ -34,14 +35,24 @@ export default function NavCart({info}:{info:{
       method:"POST"
     })
     const data =await res.json();
-    setAdding(false);
+    if(!data.success){
+      toast.error(data.message)
+    }else{
+       toast.success("Product Added Successfully")
+       setAdding(false);
+    }
  }
 
 
   async function deleteCart(){
     const res=await fetch("/api/user-private/cart/delete_from_cart?id="+info.c_id,{method:"POST",cache:"reload"});
     const data =await res.json();
-    console.log(data)
+    if(!data.success){
+      toast.error(data.message)
+    }else{
+       toast.warn("Product Deleted Successfully")
+       setAdding(false);
+    }
   }
  
 

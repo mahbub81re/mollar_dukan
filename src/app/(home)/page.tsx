@@ -1,6 +1,7 @@
 "use client"
 
 
+import { ToastContainer } from "react-toastify"
 import AllCatagories from "./_components/AllCatagories"
 import Benner from "./_components/Benner"
 import HomeProducts from "./_components/HomeProducts"
@@ -9,6 +10,7 @@ import HomeProducts from "./_components/HomeProducts"
 export default function Home() {
   return (
    <div className="w-full flex flex-col items-center mt-[60px]">
+    <ToastContainer/>
        <Benner/> 
      <AllCatagories/>
      <HomeProducts/>

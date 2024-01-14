@@ -1,7 +1,7 @@
 import { TypeAnimation } from "react-type-animation";
 export default function Benner() {
   return (
-    <div className="flex w-full h-screen relative bg-black overflow-hidden text-white mt-0">
+    <div className="flex w-full h-screen max-md:h-[500px] relative bg-black overflow-hidden text-white mt-0">
           <div className='absolute animate-bounce -left-16 top-40 w-[300px] h-[300px]  bg-gradient-radial from-10% from-pink-500   to-white/50s rounded-sm to-50%'></div>
       <div className='absolute animate-bounce left-10 top-60 max-md:hidden rotate-45 w-[300px] h-[300px]  bg-gradient-radial from-10% from-pink-500   to-white/50s rounded-sm to-50%'></div>
       <div className='absolute animate-bounce -right-16 top-40 w-[300px] h-[300px]  bg-gradient-radial from-10% from-pink-500/50   to-white/50s rounded-sm to-50%'></div>

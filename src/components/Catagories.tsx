@@ -4,6 +4,7 @@ import CatCart from './CatCart'
 import axios from 'axios'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
 
 export default function Catagories() {
   const [catagories, setCat]= useState([])
@@ -15,7 +16,11 @@ export default function Catagories() {
   async function getCatagoy(){
       const res = await fetch("/api/common/categories",{cache:"reload"});
       const data = await res.json();
+      if(data.success===false){
+        toast.error(data.message)
+     }else{
       setCat(data.data)
+     }
   }
   return (
     <div className=' p-4 bg-white'>

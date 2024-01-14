@@ -2,6 +2,7 @@
 import NavCart from '@/components/NavCart'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 interface CartItem {
   _id: string;
   quantity: number;
@@ -39,10 +40,12 @@ export default function NavCarts() {
                 throw new Error(`Failed to fetch cart data: ${res.status}`);
             }else{
               const data = await res.json();
-              if(data.success===false) {console.log(data.message)}else{ setCarts(data.data);}
+              if(data.success===false) {
+                toast.error("Network problem")
+              }else{ setCarts(data.data);}
             }
         } catch (error) {
-            console.error(error);
+          toast.error("Something is wrong!")
         }
     }
   return (

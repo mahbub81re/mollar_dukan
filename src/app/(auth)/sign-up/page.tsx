@@ -6,6 +6,7 @@ import React, {  useState } from "react";
 import axios from "axios";
 import {  useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup =  () => {
    const {data:session} = useSession()
@@ -30,35 +31,32 @@ const Signup =  () => {
     console.log(user);
     try {
       if (!user.name || !user.email || !user.password) {
-        setError("please fill all the fields");
+        toast.error("please fill all the fields");
         return;
       }
       const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
       if (!emailRegex.test(user.email)) {
-        setError("invalid email id");
+        toast.error("invalid email id");
         return;
       }
       const res = await axios.post("/api/register", user);
   
       if (res.status == 200 || res.status == 201) {
-        console.log("user added successfully");
-        setError("");
+        toast.success("user added successfully");
         const resLog = await signIn("credentials", {
           email: res.data.user.email,
           password: res.data.user.password,
           redirect: false,
         });
         if (resLog?.error) {
-          console.log(res);
-          setError("error");
+          toast.error("User doesn't loged-in")
         }
   
-        setError("");
+        toast.success("user Loged-in successfully");
         router.push("/");
       }
     } catch (error) {
-      console.log(error);
-      setError("");
+      toast.error("Something's going wrong!")
     } finally {
       setLoading(false);
 
@@ -78,6 +76,7 @@ const Signup =  () => {
         backgroundSize: "cover",
       }}
     >
+      <ToastContainer/>
       <div className="grid place-items-center mx-auto max-w-4xl w-full lg:py-10 min-h-screen ">
         <div className="flex justify-center items-center  lg:flex-row flex-col gap-6 lg:gap-0 w-full shadow-md rounded-2xl">
           <div className="lg:w-1/2 w-full bg-[#5D7DF3]  max-lg:bg-[#5D7DF3] max-lg:hidden">

@@ -20,7 +20,6 @@ export async function GET(req:NextRequest) {
         return NextResponse.json({status: 204 , success: false, message: 'No product found.' });
     }
    }catch(error){
-    console.log('Error in getting all categories:', error);
     return NextResponse.json({status : 500 , success: false, message: 'Something went wrong. Please try again!' });
    }
     

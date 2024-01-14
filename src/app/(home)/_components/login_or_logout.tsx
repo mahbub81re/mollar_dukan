@@ -6,12 +6,14 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { UserRound } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import useEffect from 'react';
+import { toast } from 'react-toastify';
 
 
 export default function RightNav() {
   const router = useRouter()
 const {data:session} =useSession()
- 
+
 if(session){
   return (
     <div className='mr-4 mt-[2px]'>

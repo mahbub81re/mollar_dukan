@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SecTitle from './SecTitle'
 import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
+import { toast } from 'react-toastify';
 
 
 type ProductData = {
@@ -24,7 +25,11 @@ export default function HomeProducts() {
   async function getProducts() {
      const res  = await fetch("/api/common/products?limit=10")
      const data = await res.json();
-     setProducts(data.data);
+     if(data.success===false){
+      toast.error("Network Problem! please reload the page or check your connection");
+     }else{
+       setProducts(data.data);
+     }
   }
   return (
     <div className=' w-full h-auto   bg-gradient-to-r from-[#30608D] via-black to-[#0A1915] pb-16 ' >
