@@ -5,7 +5,8 @@ import SecTitle from './SecTitle'
 import { BellElectric, Book, Shirt, Syringe } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
+
 
 export default  function AllCatagories() {
   const [catagories, setCat]= useState([])
@@ -24,6 +25,7 @@ export default  function AllCatagories() {
   }
   return (
     <div className=' w-full h-auto pb-24 bg-local ' style={{backgroundImage: `url("/catbg.png")`}}>
+      {/* <ToastContainer/> */}
      <SecTitle dot_color="bg-[#ff3131]" title="Catagories" text_color="text-[#ff3131]"/>
       {/* cata list */}
       <div className="flex flex-row justify-center ">

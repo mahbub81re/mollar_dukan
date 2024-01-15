@@ -3,13 +3,14 @@ import Logo from '@/components/Logo'
 import React from 'react'
 import NavLinks from './NavLinks'
 import RightNav from './login_or_logout'
-
+import { Toaster } from 'sonner';
 
 
 export default function NavBar() {
 
   
   return (
+    <>
     <div className="w-full  flex flex-row bg-white  justify-between items-center absolute top-0 shadow-md  border-b pb-2 font-serif z-[9999]">
         <div className=' flex flex-row justify-between items-center max-md:w-[70px] w-[250px]'>
           <Logo/>
@@ -20,5 +21,7 @@ export default function NavBar() {
         </div>
         
     </div>
+    <Toaster />
+    </>
   )
 }

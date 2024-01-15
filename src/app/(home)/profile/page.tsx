@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 interface Address {
     shippingAddress: {
@@ -86,6 +86,7 @@ export default function Profile() {
             })}
              <AddAnother />
          </div>
+        
          {/* reword */}
     </div>
   )

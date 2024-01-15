@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import { ToastContainer } from './nexttoast';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'
 import AuthProvider from '@/components/AuthProvider'
 import Head from 'next/head'
+import ToastProvider from '@/components/toast.provider';
 
 
 
@@ -27,15 +27,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-return(<html lang="en"><body className={myFont.className}>
-   <Head>
-        {/* Other meta tags or head elements */}
-        <meta name="google-site-verification" content="gsNc4Ka7Bv99vMH3l-zk6X5GkvImBA-n0eUbI5g0OJI" />
-
-        {/* Other meta tags or head elements */}
-      </Head>
-  <AuthProvider>
+return(
+<html lang="en">
+  <body suppressHydrationWarning className={myFont.className}>
+     <AuthProvider>
+      {/* <ToastProvider> */}
      {children}
-  {/* <ToastContainer/> */}
-  </AuthProvider></body></html>)
+      {/* </ToastProvider> */}
+     </AuthProvider>
+    </body>
+  </html>)
 }

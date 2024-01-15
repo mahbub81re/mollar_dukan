@@ -1,10 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import CatCart from './CatCart'
-import axios from 'axios'
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner';
 
 export default function Catagories() {
   const [catagories, setCat]= useState([])

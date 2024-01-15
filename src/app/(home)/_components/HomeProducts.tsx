@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SecTitle from './SecTitle'
 import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 
 type ProductData = {
@@ -33,6 +33,7 @@ export default function HomeProducts() {
   }
   return (
     <div className=' w-full h-auto   bg-gradient-to-r from-[#30608D] via-black to-[#0A1915] pb-16 ' >
+      {/* <ToastContainer/> */}
     <SecTitle dot_color="bg-white" title="Products"  text_color="text-white"/>
      <div className='flex flex-row justify-center items-center'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 '>

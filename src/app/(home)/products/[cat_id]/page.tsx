@@ -3,7 +3,7 @@ import ProductCard from '@/components/ProductCard'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'sonner'
 
 export interface producttype{
 _id:string,

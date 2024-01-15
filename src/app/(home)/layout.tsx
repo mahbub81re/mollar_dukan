@@ -1,6 +1,6 @@
+"use client"
 import Footer from "@/components/Footer"
 import NavBar from "./_components/NavBar"
-import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 export default function HomeLayout({
     children,
@@ -11,7 +11,6 @@ export default function HomeLayout({
     <div >
        <NavBar/>
         {children}
-        {/* <ToastContainer/> */}
         {/* <Footer/> */}
     </div>
     )

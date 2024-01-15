@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner';
 type ProductData = {
   productName: string,
   productImage: string,
@@ -28,9 +28,9 @@ export default function ProductCard({ productName,productDescription, productIma
     })
     const data =await res.json();
     if(!data.success){
-      toast.error(data.message)
+      toast(data.message)
     }else{
-       toast.success("Product Added Successfully")
+      toast("Product Added Successfully",{duration:1000});
        setAdding(false);
     }
  }

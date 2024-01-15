@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 import { Minus, Plus, X } from 'lucide-react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 
 export default function NavCart({info}:{info:{
   c_id:string,
@@ -50,7 +50,7 @@ export default function NavCart({info}:{info:{
     if(!data.success){
       toast.error(data.message)
     }else{
-       toast.warn("Product Deleted Successfully")
+       toast.warning("Product Deleted Successfully")
        setAdding(false);
     }
   }
