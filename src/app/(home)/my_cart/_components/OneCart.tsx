@@ -34,7 +34,7 @@ export default function OneCart({ cart}: { cart:CartItem }) {
           if(data.success===false){
             toast.error(data.message)
           }else{
-            toast('Toast is good');
+            toast('Product added successfully');
             // getCart()
           }
           setAdding(false);
