@@ -36,7 +36,7 @@ export default function ProductCard({ productName,productDescription, productIma
  }
 
   return (
-   <Card  className="w-[280px] border-none p-0 bg-white bg-gradient-to-tr from-[#004AAD] to-[#CB6CE6]">
+   <Card  className="max-sm:w-[280px] w-[240px]  border-none p-0 bg-white bg-gradient-to-tr from-[#004AAD] to-[#CB6CE6]">
       <CardContent>
       <Image src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+productImage } width={250} height={250} className='w-full rounded-md ' alt="product"/>
       </CardContent>

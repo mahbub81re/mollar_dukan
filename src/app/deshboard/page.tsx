@@ -26,6 +26,7 @@ export default  function Deshboard() {
           <div><Link href="/deshboard/users">Users</Link></div>
           <div><Link href="/deshboard/orders">Orders</Link></div>
           <div><Link href="/deshboard/products">Products</Link></div>
+          <div><Link href="/deshboard/messages">Messages</Link></div>
         </div>
        )
      
