@@ -44,14 +44,14 @@ export default function NavLinks() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         {session && <NavigationMenuItem className="mx-1">
-        <Link href="/" legacyBehavior passHref>
+        <Link href="/my_cart" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <span className="max-md:hidden">আপনার ব্যাগ</span>
               <span className="md:hidden"><ShoppingCart/></span>
             </NavigationMenuLink>
           </Link>
           </NavigationMenuItem> }
-          
+
       </NavigationMenuList>
     </NavigationMenu>
   )
