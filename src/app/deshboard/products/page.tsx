@@ -14,6 +14,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import Product from '../../../models/Product';
 import * as React from 'react';
+import { toast } from "sonner"
 
   interface Product{
     _id:string;
@@ -74,11 +75,42 @@ subcategories:[
     },[])
   
 
-    async function getProducts(){
-      const res = await fetch("/api/common/products?limit=100");
-      const data = await res.json();
-      setProducts(data.data)
+    let limit = 5;
+    const [loading,setLoading]= useState(false);
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+          console.log(limit)
+         if(!loading ){
+          limit+=5;
+          getProducts()
+         }
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [])
+  
+    useEffect(()=>{
+          getProducts()
+    },[limit])
+  
+    async function getProducts() {
+      setLoading(true)
+       const res  = await fetch("/api/common/products?limit="+limit)
+       const data = await res.json();
+       if(data.success===false){
+        toast.error("Network Problem! please reload the page or check your connection");
+       }else{
+         setProducts(data.data);
+       }
+       setLoading(false)
     }
+
+
+
     async function getCategories(){
       const res = await fetch("/api/common/categories");
       const data = await res.json();

@@ -19,7 +19,7 @@ export async function GET(req:NextRequest){
     try{
         if(token){
             connectDB();
-            const data =  await Contact.find({userID:id}).limit(20);
+            const data =  await Contact.find({userID:id});
             if(data){
                 return NextResponse.json({success:true,status:200,data:data})
             }else{
