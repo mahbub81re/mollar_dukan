@@ -53,7 +53,7 @@ export default function CataProductsPage({ params }: { params: { cat_id: string 
         {categories.map((cat:any)=>{  
          return(
          <Link key={cat._id} href={"/products/"+cat.categories._id} className='mx-3  my-3 h-10 p-2 bg-white rounded'>
-          <div className='inline w-auto'>
+          <div className='inline-block w-auto'>
             <div className='inline w-[20px] mr-2'> 
              <Image className='inline' src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+cat.categories.categoryImage} width={20} height={20} alt="C"/>
             </div>

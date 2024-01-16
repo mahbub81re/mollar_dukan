@@ -16,7 +16,7 @@ const {data:session} =useSession()
 
 if(session){
   return (
-    <div className='mr-4 mt-[2px]'>
+    <div className='mr-4 mt-[8px] text-sm'>
        <Link href="/profile" className='max-md:hidden'>আপনি</Link>
        <Link href="/profile" className='md:hidden'><UserRound/></Link>
        

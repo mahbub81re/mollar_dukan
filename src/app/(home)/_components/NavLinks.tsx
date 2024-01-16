@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/navigation-menu"
 import Catagories from "@/components/Catagories"
 import { useSession } from "next-auth/react"
-import NavCarts from "./NavCarts"
 import { GanttChartSquare, Home, ShoppingCart } from "lucide-react"
 
 
@@ -44,19 +43,15 @@ export default function NavLinks() {
              <Catagories/>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {session && <NavigationMenuItem >
-            <NavigationMenuTrigger>
+        {session && <NavigationMenuItem className="mx-1">
+        <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <span className="max-md:hidden">আপনার ব্যাগ</span>
               <span className="md:hidden"><ShoppingCart/></span>
-              </NavigationMenuTrigger>
-               <NavigationMenuContent className="max-md:left-[50px]" >
-                <NavCarts/>
-                  <div className="flex">
-                    <Link className="w-full h-8  bg-green-600 rounded text-center text-white pt-1 m-3" href="/my_cart">Go to Details</Link> 
-                  </div>
-               </NavigationMenuContent>
-             </NavigationMenuItem>
-             }
+            </NavigationMenuLink>
+          </Link>
+          </NavigationMenuItem> }
+          
       </NavigationMenuList>
     </NavigationMenu>
   )
