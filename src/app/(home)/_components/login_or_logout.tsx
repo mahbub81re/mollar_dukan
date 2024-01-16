@@ -17,8 +17,8 @@ const {data:session} =useSession()
 if(session){
   return (
     <div className='mr-4 mt-[2px]'>
-       <Button onClick={()=>router.push("/profile")} className='max-md:hidden'>আপনি</Button>
-       <Button onClick={()=>router.push("/profile")} className='md:hidden'><UserRound/></Button>
+       <Link href="/profile" className='max-md:hidden'>আপনি</Link>
+       <Link href="/profile" className='md:hidden'><UserRound/></Link>
        
     </div>
   )

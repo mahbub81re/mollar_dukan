@@ -65,7 +65,8 @@ export default function CataProductsPage({ params }: { params: { cat_id: string 
           </Link>)
         })}
         </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 '>
+    <div className='flex flex-row justify-center items-center'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 items-center justify-center'>
    {products.map((item:producttype)=>{
     return(<ProductCard 
         productName = {item?.productName}
@@ -79,6 +80,7 @@ export default function CataProductsPage({ params }: { params: { cat_id: string 
    })}
        
       </div>
+    </div>
      </div>
    </div>
   )
