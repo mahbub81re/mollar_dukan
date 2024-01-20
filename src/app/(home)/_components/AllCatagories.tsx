@@ -29,16 +29,16 @@ export default  function AllCatagories() {
      <SecTitle dot_color="bg-[#ff3131]" title="Catagories" text_color="text-[#ff3131]"/>
       {/* cata list */}
       <div className="flex flex-row justify-center ">
-        <div className={`grid grid-cols-1 md:grid-cols-2 text-[24px]  space-y-14  md:space-x-6 max-md:space-y-12 ` }>
+        <div className={`grid max-sm:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-cols-6 text-[24px]     ` }>
           {catagories.map((category:any)=>{
             count+=1;
                  return(
                  <Link href={"/products/"+category._id} key={category._id} className={`${count===1&& " md:mt-14 md:ml-2   inline-block"}`}>
-                 <div className={`inline-block  p-6 pr-8  rounded-full w-[300px]  bg-gradient-to-tr from-[#004AAD]  to-[#CB6CE6] `}>
-                   <div className='inline w-[40px] mr-2 rounded-full overflow-hidden'> 
-                    <Image className="rounded-full inline w-[40px] h-[40px]"  src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+category.categoryImage} width={40} height={40} alt="C"/>
+                 <div className={`inline-block  w-[150px] p-2 rounded-sm h-[150px] drop-shadow-md items-center bg-white m-3 `}>
+                   <div className='mr-2 rounded-full mx-auto w-[60px] h-[60px]'> 
+                    <Image className="rounded-full inline w-[60px] h-[60px]"  src={"https://ocynpzblizvh6eisuwuoca.on.drv.tw/www.mahbub81r.com/"+category.categoryImage} width={60} height={60} alt="C"/>
                    </div>
-                  <div className='inline text-white text-[30px]  ml-2 '>
+                  <div className=' text-[20px] pt-4 ml-2 '>
                      {category.categoryName}
                   </div>
                 </div>

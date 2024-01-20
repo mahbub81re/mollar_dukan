@@ -104,7 +104,6 @@ type Inputs = {
 
 function AddressOne({fullName,address,city,postalCode,country,phone,id}:shippingAddress){
     const [editable, setEditable] = useState(true)
-     const router = useRouter()
     const { register, handleSubmit } = useForm<Inputs>({
         criteriaMode: "all"
     });
@@ -120,7 +119,8 @@ function AddressOne({fullName,address,city,postalCode,country,phone,id}:shipping
         if(dat.success===false){
            toast.error(dat.message)
         }else{
-          router.push("/profile")
+            toast.success("Edited ")
+            setEditable(true)
         }
     }
    return (<>
@@ -143,14 +143,12 @@ function AddressOne({fullName,address,city,postalCode,country,phone,id}:shipping
 
 function AddAnother(){
     const [editable, setEditable] = useState(false)
-    const router = useRouter()
     const { register, handleSubmit } = useForm<Inputs>({
         criteriaMode: "all"
     });
 
 
     const onSubmit: SubmitHandler<Inputs> = async data => {
-        console.log(data)
         const res =await fetch("/api/user-private/address/create_an_address",{
             method:"POST",
             body:JSON.stringify(data),
@@ -159,7 +157,8 @@ function AddAnother(){
         if(dat.success===false){
             toast.error(dat.message)
          }else{
-           router.push("/profile")
+            toast.success("Edited ")
+            setEditable(false)
          }
     }
     return(
