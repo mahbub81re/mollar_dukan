@@ -1,5 +1,5 @@
 "use client";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Phone } from "lucide-react";
 import Image from "next/image";
 // import bg from "../public/bg3.png";
 // import logo from "../public/logo.png";
@@ -35,9 +35,8 @@ export default function SignInPage(){
         setError("please fill all the fields");
         return;
       }
-      const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-      if (!emailRegex.test(user.email)) {
-        setError("invalid email id");
+      if (user.email.length!==11) {
+        toast.error("invalid Phone number");
         return;
       }
 
@@ -49,15 +48,10 @@ export default function SignInPage(){
 
       if (res?.error) {
         toast.error("Sorry! Username or Password not matched");
-        setError("error");
       }else{
         toast.success("Successfully Loged-in");
         router.push("/");
       }
-
-
-
-      setError("");
     } catch (error) {
       console.log(error);
       setError("");
@@ -101,12 +95,12 @@ export default function SignInPage(){
               onSubmit={handleSubmit}
             >
               <div className="flex flex-col w-full lg:px-5">
-                <label className="text-sm">Email</label>
+                <label className="text-sm">Phone</label>
                 <div className="bg-white flex justify-start items-start py-3 px-4 rounded text-slate-600 text-lg mt-1">
-                  <Mail className="w-7 h-7 text-[#A1BDFD]" />
+                  <Phone className="w-7 h-7 text-[#A1BDFD]" />
                   <input
-                    type={"email"}
-                    placeholder="example@123.com"
+                    type={"text"}
+                    placeholder="01*********"
                     name="email"
                     className="outline-none w-full px-4"
                     value={user.email}
@@ -140,13 +134,6 @@ export default function SignInPage(){
                   <div className="border-b border-gray-800 py-2 w-full px-6" />
                   <div className="mt-3">or</div>
                   <div className="border-b border-gray-800 py-2 w-full px-6" />
-                </div>
-                <div className="flex justify-center items-center w-full gap-8 pb-8">
-
-                  <div onClick={()=>signIn("google")} className="rounded px-6 py-2 shadow cursor-pointer bg-gray-50 grid place-items-center mx-auto mb-4">
-                  <Image src="/google2.svg" alt="bg" width={100} height={100} />
-                  </div>{" "}
-
                 </div>
                 <div className="text-lg text-slate-900 font-medium">
                   <span>Dont have an account?</span>

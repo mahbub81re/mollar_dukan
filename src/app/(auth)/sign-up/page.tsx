@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Lock, User } from "lucide-react";
+import { Mail, Lock, User, Phone } from "lucide-react";
 import Image from "next/image";
 import React, {  useState } from "react";
 import axios from "axios";
@@ -9,7 +9,6 @@ import { signIn, useSession } from "next-auth/react";
 import { toast } from "sonner";
 
 export default function SignUpPage() {
-   const {data:session} = useSession()
     
    
   const [loading, setLoading] = useState(false);
@@ -28,14 +27,12 @@ export default function SignUpPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log(user);
     try {
       if (!user.name || !user.email || !user.password) {
         toast.error("please fill all the fields");
         return;
       }
-      const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-      if (!emailRegex.test(user.email)) {
+      if (user.email.length!==11) {
         toast.error("invalid email id");
         return;
       }
@@ -111,12 +108,12 @@ export default function SignUpPage() {
                 </div>
               </div>
               <div className="flex flex-col w-full lg:px-5">
-                <label className="text-sm">Email</label>
+                <label className="text-sm">Phone</label>
                 <div className="bg-white flex justify-start items-start py-3 px-4 rounded text-slate-600 text-lg mt-1">
-                  <Mail className="w-7 h-7 text-[#A1BDFD]" />
+                  <Phone className="w-7 h-7 text-[#A1BDFD]" />
                   <input
-                    type={"email"}
-                    placeholder="example@123.com"
+                    type={"text"}
+                    placeholder="01*********"
                     name="email"
                     className="outline-none w-full px-4"
                     value={user.email}
@@ -151,11 +148,6 @@ export default function SignUpPage() {
                   <div className="mt-3">or</div>
                   <div className="border-b border-gray-800 py-2 w-full px-6" />
                 </div>
-
-                <div onClick={()=>signIn("google")} className="rounded px-6 py-2 shadow cursor-pointer bg-gray-50 grid place-items-center mx-auto mb-8">
-                  <Image src="/google2.svg" alt="bg" width={100} height={100} />
-                </div>{" "}
-
                 <div className="text-lg text-slate-900 font-medium">
                   <span>Have an account?</span>
                   <a href="/sign-in" className="text-[#5D7DF3] pl-3 hover:underline">

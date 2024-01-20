@@ -1,12 +1,12 @@
 // create_a_category
-// http://localhost:3000/api/user-private/bookmark/add
+// http://localhost:3000/api/user-private/bookmark
 
 import connectDB from "@/lib/db";
 import Bookmark from "@/models/Bookmark";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req:NextRequest){
+export async function GET(req:NextRequest){
     const token =await getToken({
         req,
         secret:process.env.NEXTAUTH_SECRET
@@ -14,8 +14,7 @@ export async function POST(req:NextRequest){
     try{
         if(token){
             connectDB();
-            const data = await req.json();
-            const res =  await Bookmark.create({userID:token.id,productID:data.productID});
+            const res =  await Bookmark.find({userID:token.id}).populate("productID");
             if(res){
                 return NextResponse.json({success:true,status:200,data:res})
             }else{

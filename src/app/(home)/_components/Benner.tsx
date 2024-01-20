@@ -9,7 +9,7 @@ export default function Benner() {
       <div className='absolute animate-bounce right-16 max-md:hidden top-10 rotate-45 w-[300px] h-[300px]  bg-gradient-radial from-10% from-pink-500   to-white/50s rounded-sm to-50% '></div>
       <div className="flex flex-row w-full h-full justify-center items-center ">
          <div className="z-50 animate-pulse">
-           <div className="text-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-blue-600">
+           <div className="text-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-green-400">
             <span >
                মোল্লার দোকান
             </span><br></br>

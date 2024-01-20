@@ -10,26 +10,24 @@ export const dynamic = 'force-dynamic'
 export async function GET(req:NextRequest) {
     const { searchParams } = new URL(req.url);
     const limit = searchParams.get('limit');
-    
-   try{
-    connectDB();
-    let defu = 0;
     if(limit){
-        defu=parseInt(limit);;
-    }
-    const products =await Product.find().limit(defu);
-    if(products){
-        if(products.length < defu ){
-            return NextResponse.json({status:200, success  :false , message :"No more products found"});
+        try{
+    connectDB();
+        const products =await Product.find().skip(parseInt(limit)).limit(10);
+        if(products ){
+            if(products.length === 0 ){
+                return NextResponse.json({status:200, success  :false , message :"No more products found"});
+            }else{
+                return NextResponse.json({status:200, success  :true ,  data: products });
+            }
         }else{
-            return NextResponse.json({status:200, success  :true ,  data: products });
+            return NextResponse.json({status: 204 , success: false, message: 'No product found.' });
         }
-    }else{
-        return NextResponse.json({status: 204 , success: false, message: 'No product found.' });
+       }catch(error){
+        return NextResponse.json({status : 500 , success: false, message: 'Something went wrong. Please try again!' });
+       }
     }
-   }catch(error){
-    return NextResponse.json({status : 500 , success: false, message: 'Something went wrong. Please try again!' });
-   }
+    return NextResponse.json({status : 500 , success: false, message: 'End' });
     
 }
 

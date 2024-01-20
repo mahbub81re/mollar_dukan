@@ -1,30 +1,60 @@
 "use client"
 import ProductCard from '@/components/ProductCard'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-export interface producttype{
-_id:string,
-productName:string,
-productDescription:string,
-productImage:string,
-productPrice:number,
-productQuantity:number,
-mesurType:string,
 
-}
+type ProductData = {
+  _id: string,
+  productName: string,
+  productDescription: string,
+  productImage: string,
+  productPrice: number,
+  productQuantity: number,
+  mesurType:string,
+
+};
+
+
+type Bookmark ={
+  productID:{
+    _id: string,
+  productName: string,
+  productDescription: string,
+  productImage: string,
+  productPrice: number,
+  productQuantity: number,
+  mesurType:string,
+  }
+} 
 
 
 export default function CataProductsPage({ params }: { params: { cat_id: string } }) {
- 
-  const [products , setProduct] = useState([]);
+  const {data:session} = useSession()
+  const [products, setProducts] = useState <ProductData[] | []> ([]);
+  const [boookmarks, setBookmark] = useState <Bookmark[] | []> ([]);
   const [categories , setCategory] = useState([]);
   useEffect(()=>{
     get_products_by_cat()
     get_sub_categories()
   },[])
+
+
+  useEffect(()=>{
+    getBookmark()
+},[session])
+
+async function getBookmark(){
+  const res  = await fetch("http://localhost:3000/api/user-private/bookmark")
+  const data = await res.json();
+  if(data.success===true){
+    setBookmark(data.data)
+  }
+}
+
 
 
   async function get_products_by_cat(){
@@ -33,7 +63,7 @@ export default function CataProductsPage({ params }: { params: { cat_id: string 
     if(data.success===false){
       toast.error(data.message)
     }else{
-      setProduct(data.data)
+      setProducts(data.data)
     }
   }
 
@@ -67,8 +97,13 @@ export default function CataProductsPage({ params }: { params: { cat_id: string 
         </div>
     <div className='flex flex-row justify-center items-center'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 items-center justify-center'>
-   {products.map((item:producttype)=>{
+   {products.map((item:ProductData)=>{
+      let isbook = false;
+      if(boookmarks.find(obj => obj.productID._id ===item._id)){
+       isbook=true;
+       }
     return(<ProductCard 
+      isBookmark={isbook}
         productName = {item?.productName}
         productPrice = {item?.productPrice}
         productImage = {item?.productImage}

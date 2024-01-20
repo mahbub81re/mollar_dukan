@@ -127,9 +127,9 @@ function AddressOne({fullName,address,city,postalCode,country,phone,id}:shipping
     <form  onSubmit={handleSubmit(onSubmit)} className="w-full my-6 bg-orange-300 p-5 max-w-lg flex flex-col  py-2  ">
    <div className='flex flex-row justify-between border-b'> <label>FullName:</label> {editable?<div> {fullName} </div>:<input className='p-2 bg-slate-400' {...register("fullName", { required: true, value:fullName })} type='text' />}</div>
    <div className='flex flex-row justify-between border-b'> <label>Address:</label>{editable?<div> {address} </div>  :<input className='p-2 bg-slate-400' {...register("address", { required: true , value:address })} type='text' />}</div>
-   <div className='flex flex-row justify-between border-b'> <label>City:</label> {editable?<div>  {city}  </div>:<input className='p-2 bg-slate-400' {...register("city", { required: true,value:city })}  type='text' />} </div>
+   {/* <div className='flex flex-row justify-between border-b'> <label>City:</label> {editable?<div>  {city}  </div>:<input className='p-2 bg-slate-400' {...register("city", { required: true,value:city })}  type='text' />} </div>
    <div className='flex flex-row justify-between border-b'> <label>PostalCode:</label>{editable? <div> {postalCode} </div> :<input className='p-2 bg-slate-400' {...register("postalCode", { required: true , value:postalCode})}  type='number' />}</div>
-   <div className='flex flex-row justify-between border-b'><label>Country:</label>{editable? <div> {country} </div> :<input className='p-2 bg-slate-400' {...register("country", { required: true , value:country})} type='text' />} </div>
+   <div className='flex flex-row justify-between border-b'><label>Country:</label>{editable? <div> {country} </div> :<input className='p-2 bg-slate-400' {...register("country", { required: true , value:country})} type='text' />} </div> */}
    <div className='flex flex-row justify-between border-b'><label> Phone:</label> {editable?<div>  {phone}  </div>:<input  className='p-2 bg-slate-400' {...register("phone", { required: true,value:phone })} type='text' />}</div>
     {!editable &&   <Button  type="submit">Submit</Button>}
       <button type='button' onClick={()=>setEditable(!editable)} >{editable?"Edit":"Cancel"}</button>

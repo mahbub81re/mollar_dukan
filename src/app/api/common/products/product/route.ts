@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(req:NextRequest) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
-    if(!id) return NextResponse.json({status: 400 , success: false, message: 'Please provide category id.' });
+    if(!id) return NextResponse.json({status: 400 , success: false, message: 'Please provide product id.' });
 
    try{
     connectDB();
