@@ -45,7 +45,7 @@ export default function Bookmarked() {
 
   async function getBookmark(){
     setLoading(true)
-    const res  = await fetch("http://localhost:3000/api/user-private/bookmark")
+    const res  = await fetch("/api/user-private/bookmark")
     const data = await res.json();
     if(data.success===true){
       setBookmark(data.data)
