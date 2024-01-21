@@ -15,6 +15,10 @@ export async function POST(req:NextRequest){
         if(token){
             connectDB();
             const data = await req.json();
+            const isAdded =  await Bookmark.find({userID:token.id,productID:data.productID});
+            if(isAdded.length>0)   {
+                return NextResponse.json({success:false,status:402, message:"Product already added."})
+            }
             const res =  await Bookmark.create({userID:token.id,productID:data.productID});
             if(res){
                 return NextResponse.json({success:true,status:200,data:res})

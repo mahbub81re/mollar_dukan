@@ -59,7 +59,6 @@ if(session && boookmarks.length===0){
 }
   return (
     <div  className=' w-full h-auto   bg-gradient-to-r from-[#30608D] via-black to-[#0A1915] pb-16 ' >
-      {/* <ToastContainer/> */}
     <SecTitle dot_color="bg-white" title="পছন্দের পন্য"  text_color="text-white"/>
      <div className='flex flex-row justify-center items-center'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 '>

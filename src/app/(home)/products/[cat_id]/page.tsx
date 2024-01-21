@@ -98,12 +98,11 @@ async function getBookmark(){
     <div className='flex flex-row justify-center items-center'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 items-center justify-center'>
    {products.map((item:ProductData)=>{
-      let isbook = false;
-      if(boookmarks.find(obj => obj.productID._id ===item._id)){
-       isbook=true;
-       }
+            let isbook = boookmarks.find(obj => obj.productID._id ===item._id)
+            let isBookmarked = isbook !== undefined;
+            let isBookmark = Boolean(isBookmarked);
     return(<ProductCard 
-      isBookmark={isbook}
+        isBookmark={isBookmark}
         productName = {item?.productName}
         productPrice = {item?.productPrice}
         productImage = {item?.productImage}
